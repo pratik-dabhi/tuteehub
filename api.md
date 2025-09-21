@@ -8,7 +8,7 @@ This document provides details about the available API endpoints, request payloa
 
 ### 1. Register User
 
-**URL:** `POST /api/users/register`
+**URL:** `POST /api/v1/users/register`
 **Description:** Register a new user.
 
 **Request Payload:**
@@ -51,7 +51,7 @@ This document provides details about the available API endpoints, request payloa
 **Example (cURL):**
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/users/register \
+curl -X POST http://127.0.0.1:8000/api/v1/users/register \
 -H "Content-Type: application/json" \
 -d '{"name":"John Doe","email":"john@example.com","password":"Pass@123","mobile":"1234567890","address":"123 Main St"}'
 ```
@@ -60,7 +60,7 @@ curl -X POST http://127.0.0.1:8000/api/users/register \
 
 ### 2. Login
 
-**URL:** `POST /api/login`
+**URL:** `POST /api/v1/login`
 **Description:** Login a user and generate an API token.
 
 **Request Payload:**
@@ -97,7 +97,7 @@ curl -X POST http://127.0.0.1:8000/api/users/register \
 **Example (cURL):**
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/login \
+curl -X POST http://127.0.0.1:8000/api/v1/login \
 -H "Content-Type: application/json" \
 -d '{"email":"john@example.com","password":"Pass@123"}'
 ```
@@ -111,7 +111,7 @@ curl -X POST http://127.0.0.1:8000/api/login \
 
 ### 3. Subscribe
 
-**URL:** `POST /api/subscription/subscribe`
+**URL:** `POST /api/v1/subscription/subscribe`
 **Description:** Subscribe a user to a plan.
 
 **Request Payload:**
@@ -143,7 +143,7 @@ curl -X POST http://127.0.0.1:8000/api/login \
 **Example (cURL):**
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/subscription/subscribe \
+curl -X POST http://127.0.0.1:8000/api/v1/subscription/subscribe \
 -H "Authorization: Bearer sanctum_token_here" \
 -H "Content-Type: application/json" \
 -d '{"plan":"Basic"}'
@@ -153,7 +153,7 @@ curl -X POST http://127.0.0.1:8000/api/subscription/subscribe \
 
 ### 4. Subscription Status
 
-**URL:** `GET /api/subscription/status`
+**URL:** `GET /api/v1/subscription/status`
 **Description:** Get the current subscription status of the authenticated user.
 
 **Response (Success):**
@@ -182,7 +182,7 @@ curl -X POST http://127.0.0.1:8000/api/subscription/subscribe \
 **Example (cURL):**
 
 ```bash
-curl -X GET http://127.0.0.1:8000/api/subscription/status \
+curl -X GET http://127.0.0.1:8000/api/v1/subscription/status \
 -H "Authorization: Bearer sanctum_token_here"
 ```
 
@@ -190,7 +190,7 @@ curl -X GET http://127.0.0.1:8000/api/subscription/status \
 
 ### 5. Cancel Subscription
 
-**URL:** `POST /api/subscription/cancel`
+**URL:** `POST /api/v1/subscription/cancel`
 **Description:** Cancel the current subscription.
 
 **Response (Success):**
@@ -208,7 +208,7 @@ curl -X GET http://127.0.0.1:8000/api/subscription/status \
 **Example (cURL):**
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/subscription/cancel \
+curl -X POST http://127.0.0.1:8000/api/v1/subscription/cancel \
 -H "Authorization: Bearer sanctum_token_here"
 ```
 
@@ -224,7 +224,7 @@ curl -X POST http://127.0.0.1:8000/api/subscription/cancel \
 
 ### 6. Get User by ID
 
-**URL:** `GET /api/users/{id}`
+**URL:** `GET /api/v1/users/{id}`
 **Description:** Retrieve user details by ID.
 
 | Parameter | Type    | Description    | Example |
@@ -248,7 +248,7 @@ curl -X POST http://127.0.0.1:8000/api/subscription/cancel \
 **Example (cURL):**
 
 ```bash
-curl -X GET http://127.0.0.1:8000/api/users/1 \
+curl -X GET http://127.0.0.1:8000/api/v1/users/1 \
 -H "Authorization: Bearer sanctum_token_here"
 ```
 

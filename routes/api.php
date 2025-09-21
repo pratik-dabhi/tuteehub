@@ -6,18 +6,22 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('users/register', [AuthController::class,'register']);
-Route::post('login', [AuthController::class,'login']);
+Route::prefix('v1')->group(function () {
 
-// Routes that require authentication
-Route::middleware('auth:sanctum')->group(function () {
+    Route::post('users/register', [AuthController::class,'register']);
+    Route::post('login', [AuthController::class,'login']);
 
-    // subscription management
-    Route::post('subscription/subscribe', [SubscriptionController::class,'subscribe']);
-    Route::get('subscription/status', [SubscriptionController::class,'status']);
-    Route::post('subscription/cancel', [SubscriptionController::class,'cancel']);
+    // Routes that require authentication
+    Route::middleware('auth:sanctum')->group(function () {
 
-    Route::middleware(['ensure.subscription.active', 'throttle:subscription'])->group(function () {
-        Route::get('users/{id}', [UserController::class,'show']);
+        // subscription management
+        Route::post('subscription/subscribe', [SubscriptionController::class,'subscribe']);
+        Route::get('subscription/status', [SubscriptionController::class,'status']);
+        Route::post('subscription/cancel', [SubscriptionController::class,'cancel']);
+
+        Route::middleware(['ensure.subscription.active', 'throttle:subscription'])->group(function () {
+            Route::get('users/{id}', [UserController::class,'show']);
+        });
     });
+
 });
