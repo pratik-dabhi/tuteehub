@@ -16,7 +16,7 @@ class SubscriptionTest extends TestCase
         $token = $user->createToken('test')->plainTextToken;
 
         #subscribe the subscription
-        $subscribeResponse = $this->withHeader('Authorization',"Bearer $token")->postJson('/api/subscribe',['plan'=>'Basic']);
+        $subscribeResponse = $this->withHeader('Authorization',"Bearer $token")->postJson('/api/v1/subscription/subscribe',['plan'=>'Basic']);
 
         #verify the subscription
         $subscribeResponse->assertStatus(200)->assertJson([
@@ -29,7 +29,7 @@ class SubscriptionTest extends TestCase
         ]);
 
         #fetch the status of subscription
-        $subscriptionStatusResponse = $this->withHeader('Authorization',"Bearer $token")->getJson('/api/subscription/status');
+        $subscriptionStatusResponse = $this->withHeader('Authorization',"Bearer $token")->getJson('/api/v1/subscription/status');
 
         #verify the status of subscription
         $subscriptionStatusResponse->assertStatus(200)->assertJson([
@@ -40,13 +40,13 @@ class SubscriptionTest extends TestCase
         ]);
 
         #cancel the subscription
-        $subscriptionCancelResponse = $this->withHeader('Authorization',"Bearer $token")->postJson('/api/subscription/cancel');
+        $subscriptionCancelResponse = $this->withHeader('Authorization',"Bearer $token")->postJson('/api/v1/subscription/cancel');
 
         #veirfy the cancelled subscription
         $subscriptionCancelResponse->assertStatus(200)->assertJsonFragment(['message'=>'Subscription cancelled successfully']);
 
         #check the current active subscription
-        $subscriptionReStatusResponse = $this->withHeader('Authorization',"Bearer $token")->getJson('/api/subscription/status');
+        $subscriptionReStatusResponse = $this->withHeader('Authorization',"Bearer $token")->getJson('/api/v1/subscription/status');
         $subscriptionReStatusResponse->assertStatus(200)->assertJson(['message'=>'No active subscription']);
     }
 }

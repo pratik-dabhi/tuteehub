@@ -13,7 +13,7 @@ class AuthRegisterTest extends TestCase
         $this->seed(\Database\Seeders\SubscriptionPlanSeeder::class);
 
         #register the user
-        $registerResponse = $this->postJson('/api/users/register', [
+        $registerResponse = $this->postJson('/api/v1/users/register', [
             'name'=>'Pratik Dabhi',
             'email'=>'pratik.dabhi@yopmail.com',
             'password'=>'Pratik@123',
@@ -35,7 +35,7 @@ class AuthRegisterTest extends TestCase
         $user = User::factory()->create(['password'=>bcrypt('Pratik@123')]);
 
         #login the user
-        $loginResponse = $this->postJson('/api/login', [
+        $loginResponse = $this->postJson('/api/v1/login', [
             'email'=>$user->email,
             'password'=>'Pratik@123'
         ]);
