@@ -68,7 +68,7 @@ class SubscriptionController extends Controller
             $user = $request->user();
             $active = $user->activeSubscription()->with('plan')->first();
             if (!$active) {
-                return new GeneralResponse(['message'=>'No active subscription']);
+                return new GeneralError(['message'=>'No active subscription']);
             }
             return new GeneralResponse([
                 'data' => [

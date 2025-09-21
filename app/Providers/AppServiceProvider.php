@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
 
             return $limit->response(function(Request $request, array $headers) {
                 return (new GeneralError([
-                    'message' => 'Maximum request limit reached. Please try again later.',
+                    'message' => 'API rate limit exceeded for your subscription plan.',
                     'code'    => 429,
                     'toast'   => true,
                 ]))

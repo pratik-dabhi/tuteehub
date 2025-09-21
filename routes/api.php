@@ -13,7 +13,7 @@ Route::post('login', [AuthController::class,'login']);
 Route::middleware('auth:sanctum')->group(function () {
 
     // subscription management
-    Route::post('subscribe', [SubscriptionController::class,'subscribe']);
+    Route::post('subscription/subscribe', [SubscriptionController::class,'subscribe']);
     Route::get('subscription/status', [SubscriptionController::class,'status']);
     Route::post('subscription/cancel', [SubscriptionController::class,'cancel']);
 
